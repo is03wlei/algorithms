@@ -7,7 +7,7 @@ using namespace std;
 int bfs(string fromGrid,map<string,int> &step)
 {
 	if (fromGrid=="123456780") return 0;
-	int d[8]={-3,3,-1,1,-4,-2,2,4};
+	int d[8]={-3,3,-1,1};
 	step[fromGrid]=0;
 	int head=0;
 	int tail=1;
@@ -17,10 +17,12 @@ int bfs(string fromGrid,map<string,int> &step)
 		fromGrid=list[head];
 		int curStep=step[fromGrid];
 		int zeroPos=fromGrid.find("0");
-		//cout<<fromGrid<<" "<<zeroPos<<" "<<head<<endl;
 		for(int i=0;i<4;i++){
+			if (zeroPos%3==0&&d[i]==-1) continue;
+			if (zeroPos%3==2&&d[i]==1) continue;
+			if (zeroPos<3&&d[i]==-3) continue;
+			if (zeroPos>5&&d[i]==3) continue;
 			int newZeroPos=zeroPos+d[i];
-			if (newZeroPos<0||newZeroPos>=9) continue;
 			string toGrid=fromGrid;
 			swap(toGrid[zeroPos],toGrid[newZeroPos]);
 			if (step.find(toGrid)==step.end()){
