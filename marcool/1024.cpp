@@ -4,11 +4,10 @@
 #include <vector>
 using namespace std;
 
-int d[4]={-3,3,-1,1};
-
 int bfs(string fromGrid,map<string,int> &step)
 {
 	if (fromGrid=="123456780") return 0;
+	int d[8]={-3,3,-1,1,-4,-2,2,4};
 	step[fromGrid]=0;
 	int head=0;
 	int tail=1;
@@ -39,8 +38,8 @@ int bfs(string fromGrid,map<string,int> &step)
 int main()
 {
 	string fromGrid;
-	map<string,int> step;
 	cin>>fromGrid;
+	map<string,int> step;
 	cout<<bfs(fromGrid,step)<<endl;
 	return 0;
 }
